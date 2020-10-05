@@ -2,6 +2,7 @@ package com.surfaceduo.training.listitems
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.microsoft.device.dualscreen.core.ScreenHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,8 +10,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, ListItemsFragment())
-            .commit()
+        if (!ScreenHelper.isDualMode(this)) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.first_container_id, ListItemsFragment())
+                .commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.first_container_id, ListItemsFragment())
+                .replace(R.id.second_container_id, DetailFragment())
+                .commit()
+        }
     }
 }

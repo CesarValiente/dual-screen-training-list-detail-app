@@ -40,4 +40,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation "com.microsoft.device.dualscreen:layouts:1.0.0-alpha02"
 }

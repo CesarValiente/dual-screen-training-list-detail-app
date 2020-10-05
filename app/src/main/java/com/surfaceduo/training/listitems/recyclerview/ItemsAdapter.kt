@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.microsoft.device.dualscreen.core.ScreenHelper
 import com.surfaceduo.training.listitems.R
 import com.surfaceduo.training.listitems.SharedVM
 
@@ -12,8 +13,6 @@ class ItemsAdapter(
     private val onClick: () -> Unit,
     private val sharedVM: SharedVM
 ) : RecyclerView.Adapter<ItemViewHolder>() {
-
-    private var selectedItemPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -26,12 +25,14 @@ class ItemsAdapter(
             numberView.text = item.number.toString()
             bodyView.text = item.body
             layout.setOnClickListener {
-                selectedItemPosition = position
+                sharedVM.setSelectedItemPosition(position)
                 sharedVM.setSelectedItem(item)
                 onClick()
                 notifyDataSetChanged()
             }
-            changeItemBackground(position, selectedItemPosition, layout)
+            if (ScreenHelper.isDualMode(view.context)) {
+                changeItemBackground(position, sharedVM.selectedItemPosition.value as Int, layout)
+            }
         }
     }
 
