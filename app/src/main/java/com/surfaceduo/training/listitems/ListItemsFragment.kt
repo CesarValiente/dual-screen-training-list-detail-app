@@ -47,5 +47,11 @@ class ListItemsFragment() : Fragment() {
     }
 
     private fun onItemClickListener() {
+        activity?.run {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, DetailFragment())
+                .addToBackStack("detailFragment")
+                .commit()
+        }
     }
 }
