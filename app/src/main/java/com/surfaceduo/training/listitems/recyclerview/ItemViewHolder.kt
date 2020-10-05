@@ -5,8 +5,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.surfaceduo.training.listitems.R
+import com.surfaceduo.training.listitems.SharedVM
 
-class ItemViewHolder(val view: View, val onClick: () -> Unit) :
+class ItemViewHolder(val view: View, val onClick: () -> Unit, val sharedVM: SharedVM) :
     RecyclerView.ViewHolder(view) {
     val layout: LinearLayout = itemView.findViewById(R.id.item_layout)
     val numberView: TextView = itemView.findViewById(R.id.item_number)
