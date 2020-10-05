@@ -5,17 +5,19 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.surfaceduo.training.listitems.R
+import com.surfaceduo.training.listitems.SharedVM
 
 class ItemsAdapter(
     private val items: Array<Item>,
     private val onClick: () -> Unit,
+    private val sharedVM: SharedVM
 ) : RecyclerView.Adapter<ItemViewHolder>() {
 
     private var selectedItemPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ItemViewHolder(view, onClick)
+        return ItemViewHolder(view, onClick, sharedVM)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -25,6 +27,7 @@ class ItemsAdapter(
             bodyView.text = item.body
             layout.setOnClickListener {
                 selectedItemPosition = position
+                sharedVM.setSelectedItem(item)
                 onClick()
                 notifyDataSetChanged()
             }
