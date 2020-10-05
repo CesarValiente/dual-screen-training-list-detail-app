@@ -8,6 +8,10 @@ class SharedVM : ViewModel() {
     val selectedItem = MutableLiveData<Item>()
     val selectedItemPosition = MutableLiveData<Int>()
 
+    init {
+        selectedItemPosition.value = -1
+    }
+
     fun setSelectedItem(item: Item) {
         selectedItem.value = item
     }
