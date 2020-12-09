@@ -25,12 +25,15 @@ class ItemsAdapter(
             numberView.text = item.number.toString()
             bodyView.text = item.body
             layout.setOnClickListener {
-                sharedVM.setSelectedItemPosition(position)
-                sharedVM.setSelectedItem(item)
+                sharedVM.selectedItemPosition.value = position
+                sharedVM.selectedItem.value = item
                 onClick()
                 notifyDataSetChanged()
             }
-            if (ScreenHelper.isDualMode(view.context)) {
+            if (sharedVM.selectedItemPosition.value == -1) {
+                sharedVM.selectedItemPosition.value = 0
+                sharedVM.selectedItem.value = items[0]
+            }
                 changeItemBackground(position, sharedVM.selectedItemPosition.value as Int, layout)
             }
         }
