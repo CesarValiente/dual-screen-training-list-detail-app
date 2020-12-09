@@ -11,12 +11,4 @@ class SharedVM : ViewModel() {
     init {
         selectedItemPosition.value = -1
     }
-
-    fun setSelectedItem(item: Item) {
-        selectedItem.value = item
-    }
-
-    fun setSelectedItemPosition(position: Int) {
-        selectedItemPosition.value = position
-    }
 }

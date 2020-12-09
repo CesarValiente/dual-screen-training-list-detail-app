@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.microsoft.device.dualscreen.core.ScreenHelper
+import com.microsoft.device.dualscreen.ScreenInfoProvider
 import com.surfaceduo.training.listitems.recyclerview.Item
 import com.surfaceduo.training.listitems.recyclerview.ItemsAdapter
 
@@ -50,7 +50,7 @@ class ListItemsFragment() : Fragment() {
         //If we are on single screen mode we change fragments, but if we are on dual screen mode, we take
         //advantage of the shared content the view model has to just update the detail fragment automatically.
         activity?.run {
-            if (!ScreenHelper.isDualMode(this)) {
+            if (!ScreenInfoProvider.getScreenInfo(requireContext()).isDualMode()) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.first_container_id, DetailFragment())
                     .addToBackStack("detailFragment")
