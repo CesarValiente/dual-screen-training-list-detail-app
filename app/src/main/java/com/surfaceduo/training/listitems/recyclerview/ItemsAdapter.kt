@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.microsoft.device.dualscreen.core.ScreenHelper
+import com.microsoft.device.dualscreen.ScreenInfoProvider
 import com.surfaceduo.training.listitems.R
 import com.surfaceduo.training.listitems.SharedVM
 
@@ -34,6 +34,7 @@ class ItemsAdapter(
                 sharedVM.selectedItemPosition.value = 0
                 sharedVM.selectedItem.value = items[0]
             }
+            if (ScreenInfoProvider.getScreenInfo(view.context).isDualMode()) {
                 changeItemBackground(position, sharedVM.selectedItemPosition.value as Int, layout)
             }
         }
