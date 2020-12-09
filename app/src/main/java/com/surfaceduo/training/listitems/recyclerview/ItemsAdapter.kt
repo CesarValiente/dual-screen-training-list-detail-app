@@ -16,7 +16,7 @@ class ItemsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ItemViewHolder(view, onClick, sharedVM)
+        return ItemViewHolder(view, onClick)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -45,6 +45,4 @@ class ItemsAdapter(
     }
 
     override fun getItemCount(): Int = items.size
-
-    fun getItem(position: Int): Item = items[position]
 }
